@@ -1,8 +1,15 @@
 import React from "react";
-import { View, SafeAreaView, ImageBackground, Text, StyleSheet, Pressable } from "react-native";
+import {
+  View,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  Pressable,
+  SafeAreaView
+} from "react-native";
 import { useRouter } from "expo-router"; 
 
-export default function ExploreScreen() {
+export default function MainMenuScreen() {
   const router = useRouter(); 
 
   return (
@@ -24,6 +31,12 @@ export default function ExploreScreen() {
                 style={styles.border}
                 resizeMode="contain"
               />
+              {/* Food images */}
+              <ImageBackground
+                source={require("@/assets/images/FoodGrouped.png")}
+                style={styles.food}
+                resizeMode="contain"
+              />
               <ImageBackground
                 source={require("@/assets/images/redribbon2.png")}
                 style={styles.ribbon}
@@ -35,9 +48,9 @@ export default function ExploreScreen() {
               <View style={styles.menuContent}>
                 <Pressable
                   style={styles.beginButton}
-                  onPress={() => router.push("/takePicture")}  
+                  onPress={() => router.push("/(tabs)/explore")} 
                 >
-                  <Text style={styles.beginText}>Take a Picture</Text>
+                  <Text style={styles.beginText}>BEGIN</Text>
                 </Pressable>
               </View>
             </ImageBackground>
@@ -117,4 +130,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-

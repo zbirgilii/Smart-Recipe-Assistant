@@ -1,27 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, SafeAreaView, ScrollView, Dimensions, Text, ImageBackground } from "react-native";
-import { useRouter } from "expo-router"; // ✅ Use both router and navigation
 
 export default function SplashScreenComponent() {
   const { width, height } = Dimensions.get("window");
-  const router = useRouter();
-  const [isSplashComplete, setIsSplashComplete] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsSplashComplete(true);
-    }, 3000); // ✅ Show splash for 3 seconds
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (isSplashComplete) {
-      router.replace("/"); // ✅ Navigate only when navigation is ready
-    }
-  }, [isSplashComplete]);
-
-  return (    <SafeAreaView style={{ flex: 1 }}>
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
       <ScrollView scrollEnabled={false}>
         <View
           style={{
