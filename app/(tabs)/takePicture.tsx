@@ -10,12 +10,15 @@ import {
 } from 'react-native';
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import * as FileSystem from 'expo-file-system';
+import { useRouter } from 'expo-router';
+
 
 export default function App() {
   const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
   const [photoUris, setPhotoUris] = useState<string[]>([]);
   const cameraRef = useRef<CameraView>(null);
+  const router = useRouter();
 
   if (!permission) return <View />;
   if (!permission.granted) {
@@ -95,7 +98,8 @@ export default function App() {
         {photoUris.length > 0 && (
           <TouchableOpacity 
             style={styles.uploadButton} 
-            onPress={preparePhotosForUpload}
+            //onPress={preparePhotosForUpload}
+            onPress={() => router.push('/ObjectConfirmationScreen')}
           >
             <Text style={styles.uploadButtonText}>
               {photoUris.length >= 4 ? "Upload 4 Photos" : "Upload Photos"}
